@@ -1,0 +1,11 @@
+#Ojito{
+    position: relative;
+    top: -32px;
+    right: -96%;
+    background: none;
+    border: none;
+}
+
+#Ojito:hover{
+    color:black;
+}
