@@ -1,46 +1,85 @@
-<<<<<<< HEAD
 let usuario = document.getElementById("usuario");
-let mensaje = document.getElementById('mensaje')
+let mensaje = document.getElementById("mensaje");
 
-usuario.addEventListener("input", function(evento){
-    this.value = this.value.toLowerCase()
+usuario.addEventListener("input", function(e) {
+    let valorLimpio = this.value.replace(/[^a-zA-Z0-9_.-]/g, "");
+    
+    if (/[^a-zA-Z0-9_.-]/.test(this.value)) {
+        mensaje.textContent = "Carácter no válido (solo letras, numeros, -, _, .)";
+        mensaje.style.color = "red";
+    } else if (this.value.length > 3) {
+        mensaje.textContent = "Correcto";
+        mensaje.style.color = "green";
+    } else {
+        mensaje.textContent = "minimo 3 caracteres";
+        mensaje.style.color = "red"; 
+    }
 
-    if(/[^a-z]/g.test(this.value)){
-        mensaje.textContent = "Esta tratando de ingresar un valor NO valido"
-        this.style.borderColor = "red"
-        this.borderColor = "2px solid"
-    }
-    else if(!this.value){
-        mensaje.textContent = "Campo Requerido"
-    }
-    else{
-        mensaje.textContent = "Usuario correcto"
-        this.style.borderColor = "green"
-        this.borderColor = "3px solid"
-    }
-    this.value = this.value.replace(/[^a-z]/g,"")
-})
-=======
-let usuario = document.getElementById("usuario");
-let mensaje = document.getElementById('mensaje')
+    this.value = valorLimpio;
+});
 
-usuario.addEventListener("input", function(evento){
-    this.value = this.value.toLowerCase()
+let password = document.getElementById("password");
+let mensajePassword = document.getElementById("mensajePassword");
 
-    if(/[^a-z]/g.test(this.value)){
-        mensaje.textContent = "Esta tratando de ingresar un valor NO valido"
-        this.style.borderColor = "red"
-        this.borderColor = "2px solid"
+password.addEventListener("input", function() {
+    if (this.value.length === 0) {
+        mensajePassword.textContent = "Campo requerido";
+        mensajePassword.style.color = "orange";
+        this.style.borderColor = "orange";
+
+    } else if (this.value.length <= 10) {
+        mensajePassword.textContent = "Debe tener más de 10 caracteres";
+        mensajePassword.style.color = "red";
+        this.style.borderColor = "red";
+        
+    } else {
+        mensajePassword.textContent = "Contraseña válida";
+        mensajePassword.style.color = "green";
+        this.style.borderColor = "green"; 
     }
-    else if(!this.value){
-        mensaje.textContent = "Campo Requerido"
+});
+
+function cambiarIcono() {
+    let inputPass = document.getElementById("password");
+    let icono = document.querySelector("#Ojito i");
+
+    if (inputPass.type === "password") {
+        inputPass.type = "text";
+        
+        icono.classList.remove("bi-eye");
+        icono.classList.add("bi-eye-slash");
+    } else {
+        inputPass.type = "password";
+        
+        icono.classList.remove("bi-eye-slash");
+        icono.classList.add("bi-eye");
     }
-    else{
-        mensaje.textContent = "Usuario correcto"
-        this.style.borderColor = "green"
-        this.borderColor = "3px solid"
+}
+
+
+
+let contador = document.getElementById("ContadorCaracteres"); // 1. Referencia
+
+password.addEventListener("input", function() {
+    let total = this.value.length;
+    contador.textContent = `Caracteres: ${total}`;
+    
+    if (total <= 10) {
+        contador.style.color = "red";
+    } else {
+        contador.style.color = "green";
     }
-    this.value = this.value.replace(/[^a-z]/g,"")
-})
->>>>>>> 29f4712 (prueba_rama)
- 
+
+});
+
+
+function Seguridad() {
+    
+    let seguridadContraseña = document.getElementById("seguridadContraseña")
+
+    if (/[0-9]/.test(seguridadContraseña)){
+
+        seguridadContraseña.textContent = "Cwdfghjklñ"
+
+    }
+}
